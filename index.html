@@ -508,12 +508,14 @@ function drawInfoWindow(map, gridSquare, count, position) {
 
     function draw_grids(map, grids) {
         let max = 0
-        for (let grid of grids) {
+        for (let i=0,x=grids.length;i<x;i++) {
+            let grid = grids[i]
             if (parseInt(grid[1]) > max) {
                 max = parseInt(grid[1])
             }
         }
-        for (let grid of grids) {
+        for (let i=0,x=grids.length;i<x;i++) {
+            let grid = grids[i]
             addSquare(map, grid, max);
         }
     }
