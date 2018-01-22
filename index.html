@@ -169,7 +169,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </head>
 <body onload='loaded()'>
 <div id='header' class='header'>
-    IGC Grid Stats
+    IGC Grid Totals
 </div>
 <div id='detailsPanel' class='detailsPanel'>
 stff
@@ -185,7 +185,7 @@ stff
 <script>
     function loaded() {
         let map = drawMap();
-        asyncLoad('grids.json', function(xhr) {
+        asyncLoad('data.json', function(xhr) {
             processReceivedData(xhr, map);
         });
     }
@@ -501,8 +501,9 @@ function drawInfoWindow(map, gridSquare, count, position) {
     function processReceivedData(xhr, map) {
         if (xhr.status === 200) {
             let text = xhr.responseText;
-            let gridstats = JSON.parse(text);
-            draw_grids(map, gridstats);
+            let data = JSON.parse(text);
+            document.getElementById('header').innerHTML = 'IGC Grid Totals: ' + new Date(data.start).toISOString();
+            draw_grids(map, data.grids);
         }
     }
 
