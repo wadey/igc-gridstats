@@ -502,7 +502,7 @@ function drawInfoWindow(map, gridSquare, count, position) {
         if (xhr.status === 200) {
             let text = xhr.responseText;
             let data = JSON.parse(text);
-            document.getElementById('header').innerHTML = 'IGC Grid Totals: ' + new Date(data.start).toUTCString();
+            document.getElementById('header').innerHTML = 'IGC Grid Totals: ' + new Date(data.start*1000).toUTCString();
             draw_grids(map, data.grids);
         }
     }
