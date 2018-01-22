@@ -177,13 +177,10 @@ stff
 <div id='map' class='map'></div>
 <div class='footer'>
 <div id='footerLeft' class='footerLeft' style='display:none'>
-    <label>
-        <input type='checkbox' id='detailsButton' class='detailsButton' onClick='toggleDetails()'>
-        show details
-    </label>
+    based on <a href='https://www.n1kdo.com/lotw-gridmapper/6mGrids.html'>lotw-gridmapper</a> by N1KDO
 </div>
 <div id='footerMid' class='footerMid'><a href='https://github.com/wadey/igc-gridstats'>GitHub</a></div>
-<div id='footerRight' class='footerRight'>based on <a href='https://www.n1kdo.com/lotw-gridmapper/6mGrids.html'>lotw-gridmapper</a> by N1KDO – <a href='http://k1wdy.com'>K1WDY</a> 2018</div>
+<div id='footerRight' class='footerRight'><a href='http://k1wdy.com'>K1WDY</a> 2018</div>
 </div>
 <script>
     function loaded() {
@@ -260,6 +257,7 @@ stff
             drawInfoWindow(map, gridSquare.toUpperCase(), count, {lat: lat+0.5, lng: lon + 1})
         });
 
+        /*
         new MapLabel({
             text: gridSquare.toUpperCase(),
             position: new google.maps.LatLng(lat + 0.7, lon + 1),
@@ -296,6 +294,7 @@ stff
             maxZoom: 5
 
         });
+        */
         new MapLabel({
             text: gridSquare.toUpperCase(),
             position: new google.maps.LatLng(lat + 0.6, lon + 1),
@@ -305,8 +304,8 @@ stff
             strokeWeight: 2,
             align: 'center',
             zIndex: 2000,
-            minZoom: 4,
-            maxZoom: 4
+            minZoom: 4
+            // maxZoom: 4
         });
     }
 
