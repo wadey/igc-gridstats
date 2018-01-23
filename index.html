@@ -511,7 +511,7 @@ function drawInfoWindow(map, gridSquare, count, position) {
         if (xhr.status === 200) {
             let text = xhr.responseText;
             let data = JSON.parse(text);
-            document.getElementById('header2').innerHTML = new Date(data.start*1000).toUTCString();
+            document.getElementById('header2').innerHTML = '<a href="https://igc.arrl.org/grid-totals.php">'+new Date(data.start*1000).toUTCString()+'</a>';
             draw_grids(map, data.grids);
         }
     }
