@@ -514,7 +514,7 @@ stff
         if (xhr.status === 200) {
             let text = xhr.responseText;
             let data = JSON.parse(text);
-            document.getElementById('header2').innerHTML = '<a href="https://igc.arrl.org/grid-totals.php">'+new Date(data.start*1000).toUTCString()+'</a>';
+            document.getElementById('header2').innerHTML = 'Snapshot <a href="https://igc.arrl.org/grid-totals.php">from</a>: '+new Date(data.start*1000).toUTCString();
             draw_grids(map, data.grids);
         }
     }
