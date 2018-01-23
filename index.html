@@ -51,6 +51,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             font-size: 7vh;
             text-align: center;
         }
+        .header2 {
+            height: 3vh;
+            font-size: 2vh;
+            text-align: center;
+        }
 
         .formField {
             width: 10em;
@@ -61,7 +66,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
         .map {
             width: 100%;
-            height: 90vh;
+            height: 87vh;
             margin: auto;
         }
 
@@ -99,7 +104,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             width: 100%;
             vertical-align: bottom;
             height: 2vh;
-            font-size: 2vh;
+            font-size: 1.5vh;
 
         }
         .footerLeft {
@@ -170,6 +175,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <body onload='loaded()'>
 <div id='header' class='header'>
     IGC Grid Totals
+</div>
+<div id='header2' class='header2'>
+    Loading...
 </div>
 <div id='detailsPanel' class='detailsPanel'>
 stff
@@ -502,7 +510,7 @@ function drawInfoWindow(map, gridSquare, count, position) {
         if (xhr.status === 200) {
             let text = xhr.responseText;
             let data = JSON.parse(text);
-            document.getElementById('header').innerHTML = 'IGC Grid Totals: ' + new Date(data.start*1000).toUTCString();
+            document.getElementById('header2').innerHTML = new Date(data.start*1000).toUTCString();
             draw_grids(map, data.grids);
         }
     }
