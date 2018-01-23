@@ -20,7 +20,7 @@ do
   curl -A "GridStats/1.0 (+http://k1wdy.com/igc)" -f -s -S -o "$DIR/$GRID" "https://igc.arrl.org/resources/api/grid-totals-api.php?gridSquare=$GRID"
   jq '.rows[0].QSLSum' "$DIR/$GRID"
   LEFT="$(( LEFT - 1))"
-  SLEEP="$(( ( RANDOM % 10 )  + 5 ))"
+  SLEEP="$(( ( RANDOM % 10 )  + 1 ))"
   echo "LEFT=$LEFT : sleep $SLEEP"
   sleep "$SLEEP"
 done <grids.txt
