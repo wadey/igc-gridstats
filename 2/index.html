@@ -44,10 +44,10 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <title>K1WDY IGC Grid Totals Map</title>
     <meta name='viewport' content='width=device-width, initial-scale=0.75'>
-    <meta property="og:url"                content="http://k1wdy.com/igc/" />
+    <meta property="og:url"                content="http://k1wdy.com/igc/2/" />
     <meta property="og:type"               content="website" />
     <meta property="og:title"              content="K1WDY IGC Grid Totals Map" />
-    <meta property="og:description"        content="Visual map of QSO totals for the 488 contiguous United States." />
+    <meta property="og:description"        content="Visual map of QSO totals for the world." />
     <meta property="og:image"              content="http://k1wdy.com/igc/example.png" />
     <meta property="og:image:width"        content="1816" />
     <meta property="og:image:height"       content="1350" />
@@ -200,9 +200,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     IGC Grid Totals
 </div>
 <div id='header2' class='header2'>
-    4-Char Squares | <a href="2/">2-Char Fields</a>
+    <a href='../'>4-Char Squares</a> | 2-Char Fields
 </div>
-<div id='header3' class='header2'>
+<div id='header3' class='header3'>
     Loading...
 </div>
 <div id='detailsPanel' class='detailsPanel'>
@@ -241,31 +241,31 @@ stff
     function addSquare(map, data, max) {
         let gridSquare = data[0];
         let count = parseInt(data[1]);
-        let coords = gridToCoordinates(gridSquare);
+        let coords = gridToCoordinates(gridSquare+'00');
         let lat = coords['lat'];
         let lon = coords['lng'];
         let mapcoords = [
             new google.maps.LatLng(lat, lon),
-            new google.maps.LatLng(lat, lon + 2),
-            new google.maps.LatLng(lat + 1, lon + 2),
-            new google.maps.LatLng(lat + 1, lon),
+            new google.maps.LatLng(lat, lon + 20),
+            new google.maps.LatLng(lat + 10, lon + 20),
+            new google.maps.LatLng(lat + 10, lon),
             new google.maps.LatLng(lat, lon)
         ];
 
         let r,g,b;
         if (count == 0) {
-            // red
-            r = 255
-            g = 0
-            b = 0
-        } else if (count < 10) {
+            // grey
+            r = 192
+            g = 192
+            b = 192
+        } else if (count < 100) {
             // orange
             r = 255
             g = 165
             b = 0
-        } else if (count < 100) {
+        } else if (count < 1000) {
             // gradient orange -> yellow
-            p = count/100
+            p = count/1000
             r = 255
             g = ((1-p)*165 + p*255)|0
             b = 0
@@ -292,7 +292,7 @@ stff
         });
         square.setMap(map);
         square.addListener('click', function() {
-            drawInfoWindow(map, gridSquare.toUpperCase(), count, {lat: lat+0.5, lng: lon + 1})
+            drawInfoWindow(map, gridSquare.toUpperCase(), count, {lat: lat+5, lng: lon + 10})
         });
 
         /*
@@ -335,14 +335,14 @@ stff
         */
         new MapLabel({
             text: gridSquare.toUpperCase(),
-            position: new google.maps.LatLng(lat + 0.6, lon + 1),
+            position: new google.maps.LatLng(lat + 6, lon + 10),
             map: map,
-            fontSize: 8,
+            fontSize: 12,
             fontColor: '#000000',
             strokeWeight: 2,
             align: 'center',
             zIndex: 2000,
-            minZoom: 4
+            minZoom: 2
             // maxZoom: 4
         });
     }
@@ -362,7 +362,7 @@ stff
     function drawMap() {
         let mapProp = {
             center: new google.maps.LatLng(37, -97),
-            zoom: 4,
+            zoom: 2,
             minZoom: 2,
             styles: [
               {
