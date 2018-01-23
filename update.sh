@@ -27,7 +27,7 @@ done <grids.txt
 set -x
 
 curl -A "GridStats/1.0 (+http://k1wdy.com/igc)" -f -s "https://igc.arrl.org/grid-totals.php" | grep "Last updated" | tee "$DIR/_finish"
-for g in "$DIR"/????; do echo "$g,$(jq -r '.rows[0].QSLSum' "$g")"; done | tee "$DIR/grids.csv"
+(cd "$DIR" && for g in ????; do echo "$g,$(jq -r '.rows[0].QSLSum' "$g")"; done) | tee "$DIR/grids.csv"
 START_TS="$(date -d"$(sed -E 's/^.*Last updated: *([^<]+?) *<.*$/\1/' "$DIR/_start")" '+%s')"
 END_TS="$(date -d"$(sed -E 's/^.*Last updated: *([^<]+?) *<.*$/\1/' "$DIR/_finish")" '+%s')"
 jq -csR 'split("\n") | [.[] | split(",") | select(length==2) | [.[0], (.[1]|tonumber)]]' "$DIR/grids.csv" | tee "$DIR/grids.json"
