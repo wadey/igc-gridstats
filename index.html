@@ -228,19 +228,23 @@ stff
 
         let r,g,b;
         if (count == 0) {
+            // red
             r = 255
             g = 0
             b = 0
         } else if (count < 10) {
+            // orange
             r = 255
             g = 165
             b = 0
         } else if (count < 100) {
+            // gradient orange -> yellow
             p = count/100
             r = 255
             g = ((1-p)*165 + p*255)|0
             b = 0
         } else {
+            // gradient yellow -> green
             p = count/max
             r = ((1-p)*255 + p*0)|0
             g = 255
@@ -318,16 +322,16 @@ stff
     }
 
     let infowindow
-function drawInfoWindow(map, gridSquare, count, position) {
-    if (!infowindow) {
-        infowindow = new google.maps.InfoWindow({
-          maxWidth: 200
-        });
+    function drawInfoWindow(map, gridSquare, count, position) {
+        if (!infowindow) {
+            infowindow = new google.maps.InfoWindow({
+              maxWidth: 200
+            });
+        }
+        infowindow.setContent('<h1>'+gridSquare+'</h1>QSO Count: ' + count.toLocaleString())
+        infowindow.setPosition(position)
+        infowindow.open(map)
     }
-    infowindow.setContent('<h1>'+gridSquare+'</h1>QSO Count: ' + count.toLocaleString())
-    infowindow.setPosition(position)
-    infowindow.open(map)
-}
 
     function drawMap() {
         let mapProp = {
