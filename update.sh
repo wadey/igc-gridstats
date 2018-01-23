@@ -2,7 +2,7 @@
 
 set -eux -o pipefail
 
-DIR=".data/$(data +%s)"
+DIR=".data/$(date +%s)"
 
 mkdir -p "$DIR"
 
