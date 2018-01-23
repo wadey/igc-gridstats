@@ -324,7 +324,7 @@ function drawInfoWindow(map, gridSquare, count, position) {
           maxWidth: 200
         });
     }
-    infowindow.setContent('<h1>'+gridSquare+'</h1>QSO Count: ' + Number(count).toLocalString())
+    infowindow.setContent('<h1>'+gridSquare+'</h1>QSO Count: ' + count.toLocaleString())
     infowindow.setPosition(position)
     infowindow.open(map)
 }
